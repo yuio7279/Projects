@@ -1,0 +1,138 @@
+package com.posproject.main;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+import com.posproject.dao.UserDAO;
+import com.posproject.gui.Gaip;
+import com.posproject.pannelMgr.AdminTopPannel;
+import com.posproject.pannelMgr.TopPannel;
+import com.posproject.process.LoginUser;
+import com.posproject.valid.LoginInfo;
+
+public class Start extends JFrame {
+
+	TopPannel top = new TopPannel();
+	AdminTopPannel topAdmin = new AdminTopPannel();
+
+	UserDAO uDao = new UserDAO();
+	JTextField idTf;
+	JTextField pwTf;
+	public Container c = getContentPane();
+	int isAdmin = -1;
+
+	public Start() {
+		setTitle("포스 매니저");
+		setSize(800, 600);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		// 여기부터
+		c = getContentPane();
+		viewScreen(new Login());
+		setVisible(true);
+	}
+
+	// 실행시 맨 처음나오는 로그인화면 패널 //
+	public class Login extends JPanel {
+		public Login() {
+			setLayout(null);
+			Font font = new Font("궁서체", Font.BOLD, 20);
+			JLabel id = new JLabel("아이디");
+			JLabel pw = new JLabel("비밀번호");
+			idTf = new JTextField(40);
+			pwTf = new JTextField(40);
+			JButton login = new JButton("로그인");
+			JButton gaip = new JButton("회원가입");
+			JButton exit = new JButton("종료");
+
+			id.setFont(font);
+			pw.setFont(font);
+			login.setFont(font);
+			gaip.setFont(font);
+			exit.setFont(font);
+
+			id.setBounds(240, 140, 100, 100);
+			pw.setBounds(240, 170, 100, 100);
+			idTf.setBounds(350, 175, 250, 30);
+			pwTf.setBounds(350, 205, 250, 30);
+			login.setBounds(200, 300, 150, 50);
+			gaip.setBounds(350, 300, 150, 50);
+			exit.setBounds(500, 300, 150, 50);
+
+			// 이벤트리스너 연결 //
+			LoginButton loginBtn = new LoginButton();
+			login.addActionListener(loginBtn);
+			gaip.addActionListener(loginBtn);
+			exit.addActionListener(loginBtn);
+
+			// 애드
+
+			add(id);
+			add(pw);
+			add(idTf);
+			add(pwTf);
+			add(login);
+			add(gaip);
+			add(exit);
+
+			JLabel imsi = new JLabel("POS MANAGER");
+			imsi.setFont(font);
+			imsi.setBounds(240, 100, 500, 50);
+			add(imsi);
+		}
+	}
+
+	public void viewScreen(JPanel p) { // 패널과 컨테이너 교체
+		c.removeAll();
+		c.add(p);
+		if (isAdmin == 0) {
+			c.add(top, BorderLayout.NORTH);
+		} else if (isAdmin == 1) {
+			c.add(topAdmin, BorderLayout.NORTH);
+		}
+		c.revalidate();
+	}
+
+	// 이벤트 처리
+	class LoginButton implements ActionListener {
+		String id, pw;
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton imsi = (JButton) e.getSource();
+			if (imsi.getText().equals("종료")) {
+				System.exit(0);
+			} else if (imsi.getText().equals("로그인")) {
+				id = idTf.getText();
+				pw = pwTf.getText();
+
+				isAdmin = uDao.login(id, pw);
+				if (isAdmin == 0) {
+					System.out.println("회원");
+					LoginUser.id = id;
+					viewScreen(new LoginInfo(isAdmin, id));
+				} else if (isAdmin == 1) {
+					System.out.println("어드민");
+					LoginUser.id = id;
+					viewScreen(new LoginInfo(isAdmin, id));
+				} else {
+					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 올바르지 않습니다.");
+				}
+
+			} else if (imsi.getText().equals("회원가입")) {
+				System.out.println("가입");
+				new Gaip();
+				setVisible(false);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		new Start();
+	}
+
+}

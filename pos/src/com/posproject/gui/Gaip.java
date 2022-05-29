@@ -1,0 +1,98 @@
+package com.posproject.gui;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+import javax.swing.*;
+
+import com.posproject.dao.DAO;
+import com.posproject.dao.UserDAO;
+import com.posproject.main.Start;
+import com.posproject.main.Start.*;
+import com.posproject.pannelMgr.AdminTopPannel;
+import com.posproject.pannelMgr.TopPannel;
+
+public class Gaip extends JFrame {
+	TopPannel top = new TopPannel();
+	AdminTopPannel topAdmin = new AdminTopPannel();
+	UserDAO uDao = new UserDAO();
+	JTextField idTf;
+	JTextField pwTf;
+	Container c;
+	JFrame main;
+
+	public Gaip() {
+
+		setTitle("포스 매니저");
+		setSize(800, 600);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		c = getContentPane();
+
+		setVisible(true);
+
+		JPanel add_pn = new JPanel();
+		addPanel(add_pn);
+		this.add(add_pn);
+
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+
+	// 회원용 가입패널
+	public JPanel addPanel(JPanel panel) {
+		setLayout(null);
+
+		Font font = new Font("궁서체", Font.BOLD, 20);
+		JLabel id = new JLabel("아이디");
+		JLabel pw = new JLabel("비밀번호");
+		idTf = new JTextField(40);
+		pwTf = new JTextField(40);
+
+		JButton gaip = new JButton("가입완료");
+		JButton back = new JButton("돌아가기");
+
+		id.setFont(font);
+		pw.setFont(font);
+		gaip.setFont(font);
+		back.setFont(font);
+
+		id.setBounds(240, 140, 100, 100);
+		pw.setBounds(240, 170, 100, 100);
+		idTf.setBounds(350, 175, 250, 30);
+		pwTf.setBounds(350, 205, 250, 30);
+		gaip.setBounds(270, 300, 150, 50);
+		back.setBounds(420, 300, 150, 50);
+
+		// 이벤트리스너 연결 //
+
+		gaip.addActionListener((e) -> {
+
+			if (uDao.gaipProcess(idTf.getText(), pwTf.getText()) == 1) {
+				new Start();
+				this.setVisible(false);
+			}
+		}); // 회원가입액션
+
+		back.addActionListener((e) -> {
+			new Start();
+			this.setVisible(false);
+		});
+		// 애드
+
+		add(id);
+		add(pw);
+		add(idTf);
+		add(pwTf);
+		add(gaip);
+		add(back);
+
+		// 삭제 //
+		JLabel imsi = new JLabel("회원 가입 페이지");
+		imsi.setFont(font);
+		imsi.setBounds(240, 100, 500, 50);
+		add(imsi);
+
+		return panel;
+	}
+}
