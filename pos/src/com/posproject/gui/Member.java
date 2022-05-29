@@ -33,7 +33,8 @@ public class Member extends JPanel {
 
 	public JPanel addPanel(JPanel panel) {
 
-		Font font = new Font("바탕체", Font.BOLD, 20);
+		Font font = new Font("SansSerif", Font.BOLD, 20);
+		Font font2 = new Font("SansSerif", Font.PLAIN, 17);
 
 		JPanel info_pn = new JPanel();
 		info_pn.setBorder(new TitledBorder(null, "회원정보", TitledBorder.LEADING, TitledBorder.TOP, font, null));
@@ -45,7 +46,7 @@ public class Member extends JPanel {
 		// --회원정보
 		JLabel info_pn_id = new JLabel("회원 ID : ");
 		JLabel info_pn_id2 = new JLabel(LoginUser.id);
-
+		
 		JLabel info_pn_rank = new JLabel("회원 등급 : ");
 		JLabel info_pn_rank2 = new JLabel("[ " + u_valid.displayRank(LoginUser.id) + " ] 등급");
 		u_valid.checkColorRank(info_pn_rank2, uDao.getRank(LoginUser.id));
@@ -53,7 +54,7 @@ public class Member extends JPanel {
 		info_pn_rank3.setForeground(Color.DARK_GRAY);
 
 		// 구매정보
-		JLabel info_pn2_many = new JLabel("가장 많이 구매했던 상품 : ");
+		JLabel info_pn2_many = new JLabel("최다 구매 상품 : ");
 		JLabel info_pn2_many2 = new JLabel(pDao.getManyBuyProduct(LoginUser.id));
 
 		JLabel info_pn2_tp = new JLabel("총 구매 액 : ");
@@ -61,16 +62,29 @@ public class Member extends JPanel {
 
 		info_pn_id.setBounds(50, 60, 150, 30);
 		info_pn_id2.setBounds(250, 60, 300, 30);
-
 		info_pn_rank.setBounds(50, 120, 150, 30);
 		info_pn_rank2.setBounds(250, 120, 100, 30);
 		info_pn_rank3.setBounds(350, 120, 500, 30);
 
-		info_pn2_many.setBounds(50, 60, 150, 30);
+		info_pn_id.setFont(font2);
+		info_pn_id2.setFont(font2);
+		info_pn_rank.setFont(font2);
+		info_pn_rank2.setFont(font2);
+		
+
+		info_pn2_many.setBounds(50, 60, 250, 30);
 		info_pn2_many2.setBounds(250, 60, 300, 30);
+		
+
+		info_pn2_many.setFont(font2);
+		info_pn2_many2.setFont(font2);
 
 		info_pn2_tp.setBounds(50, 120, 150, 30);
 		info_pn2_tp2.setBounds(250, 120, 300, 30);
+		
+
+		info_pn2_tp.setFont(font2);
+		info_pn2_tp2.setFont(font2);
 
 		info_pn.add(info_pn_id);
 		info_pn.add(info_pn_id2);

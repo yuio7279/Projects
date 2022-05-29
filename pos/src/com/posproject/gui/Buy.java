@@ -118,7 +118,6 @@ public class Buy extends JPanel {
 
 						int stock = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), 1));
 						if (Integer.parseInt(amount) > stock) {
-							System.out.println("수량을 잘 확인하세요");
 							JOptionPane.showMessageDialog(null, "수량을 잘 확인하세요", "경고입니다", JOptionPane.ERROR_MESSAGE);
 						} else if (Integer.parseInt(amount) <= stock) {
 							stock = stock - Integer.parseInt(amount);
@@ -131,7 +130,6 @@ public class Buy extends JPanel {
 					}
 				} catch (NullPointerException e1) {
 				} catch (NumberFormatException e1) {
-					System.out.println("수량을 잘 확인하세요");
 				}
 
 			});

@@ -43,7 +43,7 @@ public class Gaip extends JFrame {
 	public JPanel addPanel(JPanel panel) {
 		setLayout(null);
 
-		Font font = new Font("궁서체", Font.BOLD, 20);
+		Font font = new Font("SansSerif", Font.BOLD, 20);
 		JLabel id = new JLabel("아이디");
 		JLabel pw = new JLabel("비밀번호");
 		idTf = new JTextField(40);
@@ -57,18 +57,19 @@ public class Gaip extends JFrame {
 		gaip.setFont(font);
 		back.setFont(font);
 
-		id.setBounds(240, 140, 100, 100);
-		pw.setBounds(240, 170, 100, 100);
-		idTf.setBounds(350, 175, 250, 30);
-		pwTf.setBounds(350, 205, 250, 30);
-		gaip.setBounds(270, 300, 150, 50);
-		back.setBounds(420, 300, 150, 50);
+		id.setBounds(240, 190, 100, 100);
+		pw.setBounds(240, 220, 100, 100);
+		idTf.setBounds(350, 225, 250, 30);
+		pwTf.setBounds(350, 255, 250, 30);
+		gaip.setBounds(260, 370, 150, 50);
+		back.setBounds(420, 370, 150, 50);
 
 		// 이벤트리스너 연결 //
 
 		gaip.addActionListener((e) -> {
 
 			if (uDao.gaipProcess(idTf.getText(), pwTf.getText()) == 1) {
+				JOptionPane.showMessageDialog(null, "회원 가입이 완료 되었습니다.");
 				new Start();
 				this.setVisible(false);
 			}
@@ -90,7 +91,7 @@ public class Gaip extends JFrame {
 		// 삭제 //
 		JLabel imsi = new JLabel("회원 가입 페이지");
 		imsi.setFont(font);
-		imsi.setBounds(240, 100, 500, 50);
+		imsi.setBounds(240, 120, 500, 50);
 		add(imsi);
 
 		return panel;

@@ -28,7 +28,8 @@ public class BuyDAO {
 				buyList.add(new Buy(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+		}
+		catch (NullPointerException e) {
 		}
 		return buyList;
 	}
@@ -75,6 +76,7 @@ public class BuyDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (NullPointerException e) {
 		}
 
 		return String.valueOf(price);

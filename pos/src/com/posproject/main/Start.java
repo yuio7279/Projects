@@ -30,6 +30,7 @@ public class Start extends JFrame {
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		// 여기부터
 		c = getContentPane();
 		viewScreen(new Login());
@@ -40,7 +41,7 @@ public class Start extends JFrame {
 	public class Login extends JPanel {
 		public Login() {
 			setLayout(null);
-			Font font = new Font("궁서체", Font.BOLD, 20);
+			Font font = new Font("SansSerif", Font.BOLD, 20);
 			JLabel id = new JLabel("아이디");
 			JLabel pw = new JLabel("비밀번호");
 			idTf = new JTextField(40);
@@ -55,13 +56,13 @@ public class Start extends JFrame {
 			gaip.setFont(font);
 			exit.setFont(font);
 
-			id.setBounds(240, 140, 100, 100);
-			pw.setBounds(240, 170, 100, 100);
-			idTf.setBounds(350, 175, 250, 30);
-			pwTf.setBounds(350, 205, 250, 30);
-			login.setBounds(200, 300, 150, 50);
-			gaip.setBounds(350, 300, 150, 50);
-			exit.setBounds(500, 300, 150, 50);
+			id.setBounds(240, 190, 100, 100);
+			pw.setBounds(240, 220, 100, 100);
+			idTf.setBounds(350, 225, 250, 30);
+			pwTf.setBounds(350, 255, 250, 30);
+			login.setBounds(200, 370, 150, 50);
+			gaip.setBounds(350, 370, 150, 50);
+			exit.setBounds(500, 370, 150, 50);
 
 			// 이벤트리스너 연결 //
 			LoginButton loginBtn = new LoginButton();
@@ -81,10 +82,10 @@ public class Start extends JFrame {
 
 			JLabel imsi = new JLabel("POS MANAGER");
 			imsi.setFont(font);
-			imsi.setBounds(240, 100, 500, 50);
+			imsi.setBounds(340, 120, 500, 50);
 			add(imsi);
 		}
-	}
+	}	
 
 	public void viewScreen(JPanel p) { // 패널과 컨테이너 교체
 		c.removeAll();
@@ -132,7 +133,17 @@ public class Start extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new Start();
+		try {
+//			UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
+			
+			  UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+
+
+			new Start();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

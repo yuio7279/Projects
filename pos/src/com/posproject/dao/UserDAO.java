@@ -46,6 +46,7 @@ public class UserDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}catch (NullPointerException e) {
 		}
 		return isAdmin;
 	}
@@ -62,7 +63,8 @@ public class UserDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+		}
+		catch (NullPointerException e) {
 		}
 		return rank;
 	}

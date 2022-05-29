@@ -31,7 +31,6 @@ public class Add extends JPanel {
 
 		AddTblScrolll add = new AddTblScrolll();
 		add(add, BorderLayout.CENTER);
-
 	}
 
 	public JPanel addPanel(JPanel panel) {
@@ -80,6 +79,7 @@ public class Add extends JPanel {
 						}
 					}
 				}
+				
 				JButton imsi = (JButton) e.getSource();
 				Start imsi2 = (Start) imsi.getTopLevelAncestor();
 				imsi2.viewScreen(new Add());

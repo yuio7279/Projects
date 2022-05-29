@@ -17,7 +17,7 @@ import java.awt.event.*;
 public class TopPannel extends JPanel {
 	public TopPannel() {
 		setLayout(new GridLayout(1, 3, 5, 5));
-		Font font = new Font("궁서체", Font.BOLD, 20);
+		Font font = new Font("SansSerif", Font.BOLD, 20);
 		JButton buy = new JButton("구매");
 		JButton refund = new JButton("영수증");
 		JButton logout = new JButton("로그아웃");
