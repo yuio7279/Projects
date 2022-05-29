@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -12,14 +11,11 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import com.posproject.dao.BuyDAO;
-import com.posproject.dao.DAO;
 import com.posproject.dao.ProductDAO;
 import com.posproject.dao.UserDAO;
 import com.posproject.dto.Product;
-import com.posproject.dto.User;
 import com.posproject.main.Start;
 import com.posproject.process.LoginUser;
-import com.posproject.valid.LoginInfo;
 import com.posproject.valid.Valid_buy;
 
 import java.util.*;
@@ -114,7 +110,6 @@ public class Buy extends JPanel {
 						String product = (String) table.getValueAt(table.getSelectedRow(), 0);
 						double price = Double.parseDouble((String) table.getValueAt(table.getSelectedRow(), 2));
 						price = price * Integer.parseInt(amount);
-						System.out.println(amount + " / " + product + " / " + price);
 
 						int stock = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), 1));
 						if (Integer.parseInt(amount) > stock) {

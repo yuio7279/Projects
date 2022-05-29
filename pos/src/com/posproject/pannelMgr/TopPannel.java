@@ -2,17 +2,7 @@ package com.posproject.pannelMgr;
 
 import javax.swing.*;
 
-import com.posproject.gui.Add;
-import com.posproject.gui.Buy;
-import com.posproject.gui.LogOut;
-import com.posproject.gui.Refund;
-import com.posproject.gui.Remove;
-import com.posproject.gui.SalesRank;
-import com.posproject.gui.UserManagement;
-import com.posproject.main.Start;
-
 import java.awt.*;
-import java.awt.event.*;
 
 public class TopPannel extends JPanel {
 	public TopPannel() {

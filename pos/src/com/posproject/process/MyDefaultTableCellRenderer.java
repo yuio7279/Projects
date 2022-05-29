@@ -3,7 +3,6 @@ package com.posproject.process;
 import java.awt.Component;
 
 import javax.swing.JTextField;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 

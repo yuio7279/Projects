@@ -9,7 +9,6 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import com.posproject.dao.DAO;
 import com.posproject.dao.UserDAO;
 import com.posproject.dto.User;
 import com.posproject.main.Start;

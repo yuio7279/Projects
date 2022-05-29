@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.posproject.dto.Buy;
-import com.posproject.process.LoginUser;
 
 public class BuyDAO {
 
@@ -43,7 +42,6 @@ public class BuyDAO {
 			pstmt.setInt(3, amount);
 			pstmt.setDouble(4, price);
 			if (pstmt.executeUpdate() == 1) {
-				System.out.println("정상업로드");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,15 +53,15 @@ public class BuyDAO {
 			pstmt.setInt(1, stock);
 			pstmt.setString(2, product);
 			if (pstmt.executeUpdate() == 1) {
-				System.out.println("스톡처리도 정상");
-			}
+			}conn.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public String getTotalBuyPrice(String id) {
+	public String getTotalBuyPrice(String id) {		//계정별 총 구매 액
 
 		sql = "select sum(buyPrice) from buytbl where buyUser = ?  group by buyUser";
 		long price = 0;
@@ -73,13 +71,33 @@ public class BuyDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				price = rs.getLong("sum(buyPrice)");
-			}
+			}conn.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NullPointerException e) {
 		}
 
 		return String.valueOf(price);
+	}
+	
+	public Long getTotalBuyPrice() {		//전체 내역 총 구매 액
+
+		sql = "select sum(buyPrice) from buytbl";
+		long price = 0;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				price = rs.getLong("sum(buyPrice)");
+			}conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+		}
+
+		return price;
 	}
 
 }

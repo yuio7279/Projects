@@ -3,30 +3,23 @@ package com.posproject.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import com.posproject.dao.BuyDAO;
-import com.posproject.dao.DAO;
 import com.posproject.dao.ProductDAO;
 import com.posproject.dto.Buy;
 import com.posproject.main.Start;
 import com.posproject.process.LoginUser;
-import com.posproject.valid.CheckField;
 
 import java.util.*;
 
 public class Refund extends JPanel {
 	private ArrayList<Buy> list;
-	private ArrayList<CheckField> checkList = new ArrayList<>();
 	JScrollPane scroll;
 	private Vector<String> tableTitle;
 	private DefaultTableModel model;

@@ -1,14 +1,11 @@
 package com.posproject.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Font;
 import javax.swing.*;
 
-import com.posproject.dao.DAO;
 import com.posproject.dao.UserDAO;
 import com.posproject.main.Start;
-import com.posproject.main.Start.*;
 import com.posproject.pannelMgr.AdminTopPannel;
 import com.posproject.pannelMgr.TopPannel;
 
@@ -33,10 +30,8 @@ public class Gaip extends JFrame {
 
 		JPanel add_pn = new JPanel();
 		addPanel(add_pn);
-		this.add(add_pn);
+		add(add_pn);
 
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
 	}
 
 	// 회원용 가입패널
@@ -71,13 +66,13 @@ public class Gaip extends JFrame {
 			if (uDao.gaipProcess(idTf.getText(), pwTf.getText()) == 1) {
 				JOptionPane.showMessageDialog(null, "회원 가입이 완료 되었습니다.");
 				new Start();
-				this.setVisible(false);
+				dispose();		//화면안보이게하는 메서드, 자원까지 반납
 			}
 		}); // 회원가입액션
 
 		back.addActionListener((e) -> {
 			new Start();
-			this.setVisible(false);
+			dispose();
 		});
 		// 애드
 

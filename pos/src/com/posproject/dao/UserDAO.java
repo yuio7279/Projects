@@ -1,21 +1,14 @@
 package com.posproject.dao;
 
-import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-import com.posproject.dto.Product;
 import com.posproject.dto.User;
-import com.posproject.gui.Gaip;
-import com.posproject.gui.LogOut;
-import com.posproject.process.LoginUser;
 import com.posproject.valid.Valid_gaip;
 
 public class UserDAO {
@@ -36,9 +29,7 @@ public class UserDAO {
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println(rs.getString(1) + "\t" + rs.getString(2) + "\t" + rs.getInt(3));
 				if (pw.equals(rs.getString(2))) {
-					System.out.println("로그인 성공");
 					userId = rs.getString(1);
 					isAdmin = rs.getInt(3);
 					return isAdmin;
@@ -46,11 +37,29 @@ public class UserDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 		}
 		return isAdmin;
 	}
 
+	public int getCountMember() {
+		int members = 0;
+		sql = "select count(id) from user";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				members = rs.getInt("count(id)");
+			}
+
+			conn.close();
+			pstmt.close();
+		} catch (SQLException e) {
+		} catch (NullPointerException e) {
+		}
+		return members;
+	}
+	
 	public int getRank(String id) {
 		sql = "select * from user where id = ?";
 		int rank = -1;
@@ -63,8 +72,7 @@ public class UserDAO {
 			}
 
 		} catch (SQLException e) {
-		}
-		catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 		}
 		return rank;
 	}
@@ -120,7 +128,6 @@ public class UserDAO {
 			pstmt.setInt(1, rank);
 			pstmt.setString(2, id);
 			if (pstmt.executeUpdate() == 1) {
-				System.out.println("up");
 				return rank;
 			}
 		} catch (SQLException e) {
@@ -139,7 +146,6 @@ public class UserDAO {
 			pstmt.setInt(1, rank); // 우수인경우 환불하면 일반이된다.
 			pstmt.setString(2, id);
 			if (pstmt.executeUpdate() == 1) {
-				System.out.println("down");
 				return rank;
 			}
 		} catch (SQLException e) {
@@ -160,6 +166,8 @@ public class UserDAO {
 				if (pstmt.executeUpdate() == 1) {
 					return 1;
 				}
+				conn.close();
+				pstmt.close();
 			} else {
 				return -1;
 			}

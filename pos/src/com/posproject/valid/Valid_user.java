@@ -34,7 +34,6 @@ public class Valid_user {
 
 	public String displayRank(String id) {
 		int rank = uDao.getRank(id);
-		System.out.println(rank + "ddd");
 		String dis_rank = "";
 
 		switch (rank) {

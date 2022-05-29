@@ -17,7 +17,6 @@ public class Valid_buy {
 
 		if (!Pattern.matches("^[0-9]{1,20}$", buyCnt)) {
 			JOptionPane.showMessageDialog(null, "올바른 구매 개수를 입력하세요");
-			System.out.println("올바른 구매 개수를 입력하세요");
 			return r;
 		}
 		return -r;
@@ -28,18 +27,15 @@ public class Valid_buy {
 
 		if (!Pattern.matches("^[a-zA-Z0-9가-힣]{1,50}$", product)) {
 			JOptionPane.showMessageDialog(null, "올바른 상품명을 입력하세요");
-			System.out.println("올바른 상품명을 입력하세요");
 			return r;
 		}
 
 		if (!Pattern.matches("^[0-9]{1,50}$", stock)) {
 			JOptionPane.showMessageDialog(null, "올바른 재고량을 입력하세요");
-			System.out.println("올바른 재고량을 입력하세요");
 			return r;
 		}
 		if (!Pattern.matches("^[0-9]{1,50}$", price)) {
 			JOptionPane.showMessageDialog(null, "올바른 가격을 입력하세요");
-			System.out.println("올바른 가격을 입력하세요");
 			return r;
 		}
 		return -r;

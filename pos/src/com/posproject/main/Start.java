@@ -113,11 +113,9 @@ public class Start extends JFrame {
 
 				isAdmin = uDao.login(id, pw);
 				if (isAdmin == 0) {
-					System.out.println("회원");
 					LoginUser.id = id;
 					viewScreen(new LoginInfo(isAdmin, id));
 				} else if (isAdmin == 1) {
-					System.out.println("어드민");
 					LoginUser.id = id;
 					viewScreen(new LoginInfo(isAdmin, id));
 				} else {
@@ -125,7 +123,6 @@ public class Start extends JFrame {
 				}
 
 			} else if (imsi.getText().equals("회원가입")) {
-				System.out.println("가입");
 				new Gaip();
 				setVisible(false);
 			}
@@ -134,11 +131,7 @@ public class Start extends JFrame {
 
 	public static void main(String[] args) {
 		try {
-//			UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
-			
 			  UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
-
-
 			new Start();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

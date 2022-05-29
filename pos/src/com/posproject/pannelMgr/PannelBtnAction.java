@@ -15,7 +15,6 @@ import com.posproject.gui.Remove;
 import com.posproject.gui.SalesRank;
 import com.posproject.gui.UserManagement;
 import com.posproject.main.Start;
-import com.posproject.process.LoginUser;
 import com.posproject.valid.Valid_user;
 
 public class PannelBtnAction implements ActionListener {
@@ -47,7 +46,7 @@ public class PannelBtnAction implements ActionListener {
 		case "물건삭제":
 			imsi2.viewScreen(new Remove());
 			break;
-		case "매출순위":
+		case "매출현황":
 			imsi2.viewScreen(new SalesRank());
 			break;
 		case "회원관리":

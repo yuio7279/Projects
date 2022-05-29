@@ -9,10 +9,8 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import com.posproject.dao.DAO;
 import com.posproject.dao.ProductDAO;
 import com.posproject.dto.Product;
-import com.posproject.gui.Buy.TableCell;
 import com.posproject.main.Start;
 import com.posproject.valid.Valid_buy;
 

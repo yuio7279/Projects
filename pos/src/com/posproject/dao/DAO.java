@@ -1,11 +1,10 @@
 package com.posproject.dao;
 
 import java.sql.*;
-import java.util.ArrayList;
 
-import com.posproject.dto.Buy;
-import com.posproject.dto.Product;
-import com.posproject.dto.User;
+import javax.swing.JOptionPane;
+
+import com.posproject.main.Start;
 
 public class DAO {
 
@@ -25,8 +24,9 @@ public class DAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			JOptionPane.showMessageDialog(null, "Too many connections!");
+			System.exit(0);
+		} 
 		return conn;
 	}
 

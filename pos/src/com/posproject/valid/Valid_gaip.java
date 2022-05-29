@@ -18,18 +18,15 @@ public class Valid_gaip {
 
 		if (!Pattern.matches("^[a-zA-Z0-9가-힣]{1,20}$", id)) {
 			JOptionPane.showMessageDialog(null, "아이디는 영문, 숫자, 한글로 입력해주세요");
-			System.out.println("영문, 숫자, 한글로 입력해주세요");
 			return r;
 		}
 		if (!Pattern.matches("^[a-zA-Z0-9]{1,20}$", password)) {
 			JOptionPane.showMessageDialog(null, "비밀번호는 영문, 숫자로 입력해주세요");
-			System.out.println("비밀번호는 영문, 숫자로 입력해주세요");
 			return r;
 		}
 
 		if (dupCheck(id) == -1) {
 			JOptionPane.showMessageDialog(null, "중복된 아이디 입니다.");
-			System.out.println("중복된 아이디 입니다.");
 			return r;
 		}
 
