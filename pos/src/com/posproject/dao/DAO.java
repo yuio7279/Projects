@@ -13,8 +13,8 @@ public class DAO {
 	public Connection accessDb() {
 		Connection conn = null;
 
-		// Database 이름 kwaje //
-		String url = "jdbc:mysql://localhost/kwaje";
+		// Database 이름 posDB //
+		String url = "jdbc:mysql://localhost/posDB";
 		String id = "root";
 		String pw = "1234";
 		try {

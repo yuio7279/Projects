@@ -16,6 +16,15 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- create database 
+--
+
+DROP DATABASE IF EXISTS posDB;
+CREATE DATABASE IF NOT EXISTS posDB;
+use posDB;
+
+
+--
 -- Table structure for table `buytbl`
 --
 
@@ -31,18 +40,21 @@ CREATE TABLE `buytbl` (
   PRIMARY KEY (`buyNo`),
   KEY `buyUser` (`buyUser`),
   KEY `buyProduct` (`buyProduct`),
-  CONSTRAINT `buytbl_ibfk_1` FOREIGN KEY (`buyUser`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `buytbl_ibfk_2` FOREIGN KEY (`buyProduct`) REFERENCES `product` (`productName`) ON UPDATE CASCADE
+  CONSTRAINT `buytbl_ibfk_1` FOREIGN KEY (`buyUser`) REFERENCES `user` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `buytbl_ibfk_2` FOREIGN KEY (`buyProduct`) REFERENCES `product` (`productName`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
+ALTER TABLE buytbl AUTO_INCREMENT = 1;
 --
 -- Dumping data for table `buytbl`
 --
+INSERT INTO buytbl(buyUser,buyProduct,buyStock,buyPrice) VALUES 
+('imp','무선선풍기',300,2100000),('kys','종합비타민',100,300000),('kmj','아이패드프로',10,12000000),('kys','지우개',10,10000),('imp','헤어젤',10,150000);
+
 
 LOCK TABLES `buytbl` WRITE;
 /*!40000 ALTER TABLE `buytbl` DISABLE KEYS */;
-INSERT INTO `buytbl` VALUES (1,'num1','갤럭시S10',1,1000),(2,'num1','갤럭시S10',1,1000),(3,'num1','새우깡',2,0),(4,'num1','새우깡',80,96000),(5,'num1','안경닦이',20,60000),(6,'num1','안경닦이',10,30000),(7,'num1','갤럭시S10',1,990000),(8,'num1','안경닦이',10,30000),(9,'num1','안경닦이',10,30000),(10,'num1','안경닦이',10,30000),(11,'num1','안경닦이',10,30000),(12,'num1','아이패드프로',10,0),(13,'num1','갤럭시S10',2,0),(14,'num1','아이패드프로',1,1490000),(15,'num1','안경닦이',2,6000),(16,'num1','새우깡',2,2400),(17,'num1','안경닦이',1,3000),(18,'num1','갤럭시S10',1,990000),(19,'num1','아이패드프로',2,0),(20,'num1','안경닦이',2,6000),(21,'num1','안경닦이',1,3000);
+
 /*!40000 ALTER TABLE `buytbl` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +79,10 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES ('갤럭시S10',498,990000),('무선선풍기',1000,69800),('새우깡',9920,1200),('아이패드프로',109,1490000),('안경닦이',9924,3000);
+INSERT INTO `product` VALUES 
+('지우개',999,1000),('무선선풍기',999,70000),('마이쮸',999,1200),('치약',999,3000),('헤어젤',999,15000),
+('종합비타빈',999,30000),('피지오겔아이크림',0,20000),('아이스크림',999,1200),('하만카돈스피커',99,150000),('삼겹살',333,16000),
+('아령',499,20000),('담요',0,18000),('의자',0,1200),('안경',500,39000),('아이패드프로',99,1200000);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +108,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('admin','1234',1,0),('num1','1234',0,1);
+INSERT INTO `user` VALUES ('admin','1234',1,0),('imp','1234',0,2),('kys','1234',0,1),('kmj','1234',0,3);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -106,4 +121,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-24 22:22:57
+-- Dump completed on 2022-05-30 22:22:57
