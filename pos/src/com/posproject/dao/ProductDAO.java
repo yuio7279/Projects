@@ -114,7 +114,7 @@ public class ProductDAO {
 
 	public void refund(int id, int stock, String product) {
 		int sto = 0;
-		sql = "UPDATE buytbl SET `buyPrice` = '0' WHERE (`buyNo` = ?)";
+		sql = "UPDATE buytbl SET `buyStock` = '0',`buyPrice` = '0' WHERE (`buyNo` = ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -136,7 +136,7 @@ public class ProductDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-//		---------------------------------------------------------------------------구매량까지 매출계산이 되야하므로 수정필요
+		
 		sql = "UPDATE product SET `stock` = ? WHERE (`productName` = ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -150,54 +150,61 @@ public class ProductDAO {
 			e.printStackTrace();
 		}
 	}
-//---------------------------------------------------------------------------------
+	
 	public String getManyBuyProduct(String id) { // 계정별 가장 많이 구매한 상품
-		sql = "SELECT buyProduct FROM buytbl WHERE buyStock = (SELECT max(buyStock) FROM buytbl WHERE buyUser = ?)";
+		sql = "SELECT buyProduct, buyStock FROM buytbl WHERE buyStock = (SELECT max(buyStock) FROM buytbl WHERE buyUser = ?)";
 		String product = "";
+		int stock = 0;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				product = rs.getString("buyProduct");
+				stock = rs.getInt("buyStock");
 			}conn.close();
 			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		if(stock == 0) {
+			return product = "";
+		}
 		return product;
 	}
 	
 	public String allManyBuyProduct() { // 전체내역 중 가장 많이 구매한 상품
-		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct";
+		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct order by sum(buystock) desc limit 1;";
 		String product = "";
+		int stock = 0;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				product = rs.getString("buyProduct");
+				stock = rs.getInt("sum(buystock)");
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		if(stock == 0) {
+			return product="";
+		}
 		return product;
 	}
 	public int allCountManyBuyProduct() { // 전체내역 중 가장 많이 구매한 상품의 수
-		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct";	
-		int products = 0;
+		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct order by sum(buystock) desc limit 1;";	
+		int stock = 0;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				products = rs.getInt("sum(buystock)");
+				stock = rs.getInt("sum(buystock)");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		return products;
+		return stock;
 	}
 }

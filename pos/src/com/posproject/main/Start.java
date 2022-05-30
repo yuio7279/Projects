@@ -1,6 +1,7 @@
 package com.posproject.main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -31,7 +32,8 @@ public class Start extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		// 여기부터
+		
+		
 		c = getContentPane();
 		viewScreen(new Login());
 		setVisible(true);
@@ -41,6 +43,8 @@ public class Start extends JFrame {
 	public class Login extends JPanel {
 		public Login() {
 			setLayout(null);
+
+			setBackground(Color.white);
 			Font font = new Font("SansSerif", Font.BOLD, 20);
 			JLabel id = new JLabel("아이디");
 			JLabel pw = new JLabel("비밀번호");
@@ -80,10 +84,17 @@ public class Start extends JFrame {
 			add(gaip);
 			add(exit);
 
+			
 			JLabel imsi = new JLabel("POS MANAGER");
 			imsi.setFont(font);
-			imsi.setBounds(340, 120, 500, 50);
+			imsi.setBounds(300, 120, 500, 50);
 			add(imsi);
+			JLabel imsi_img = new JLabel(new ImageIcon("./resource/image/accountant.png"));
+			
+			imsi_img.setBounds(240,120,50,50);
+			
+			add(imsi_img);
+			
 		}
 	}	
 

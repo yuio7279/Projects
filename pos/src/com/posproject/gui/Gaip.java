@@ -1,5 +1,6 @@
 package com.posproject.gui;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import javax.swing.*;
@@ -20,24 +21,24 @@ public class Gaip extends JFrame {
 
 	public Gaip() {
 
+		setBackground(Color.white);
 		setTitle("포스 매니저");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		c = getContentPane();
-
-		setVisible(true);
-
 		JPanel add_pn = new JPanel();
 		addPanel(add_pn);
 		add(add_pn);
+		setVisible(true);
+
 
 	}
 
 	// 회원용 가입패널
 	public JPanel addPanel(JPanel panel) {
 		setLayout(null);
-
+		this.setBackground(Color.white);
 		Font font = new Font("SansSerif", Font.BOLD, 20);
 		JLabel id = new JLabel("아이디");
 		JLabel pw = new JLabel("비밀번호");
@@ -83,12 +84,13 @@ public class Gaip extends JFrame {
 		add(gaip);
 		add(back);
 
-		// 삭제 //
-		JLabel imsi = new JLabel("회원 가입 페이지");
+		JLabel imsi = new JLabel("SIGN UP");
 		imsi.setFont(font);
-		imsi.setBounds(240, 120, 500, 50);
+		imsi.setBounds(300, 120, 500, 50);
 		add(imsi);
-
+		JLabel imsi_img = new JLabel(new ImageIcon("./resource/image/referral.png"));
+		imsi_img.setBounds(240,120,50,50);
+		add(imsi_img);
 		return panel;
 	}
 }

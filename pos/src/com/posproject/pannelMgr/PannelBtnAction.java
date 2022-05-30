@@ -46,7 +46,7 @@ public class PannelBtnAction implements ActionListener {
 		case "물건삭제":
 			imsi2.viewScreen(new Remove());
 			break;
-		case "매출현황":
+		case "사용통계":
 			imsi2.viewScreen(new SalesRank());
 			break;
 		case "회원관리":

@@ -100,4 +100,53 @@ public class BuyDAO {
 		return price;
 	}
 
+	public double[] get5BestSell() {			//판매 상위 5품목의 수량
+		double[] stock = {0,0,0,0,0};
+		int i=0;
+		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct order by sum(buystock) desc limit 5;"; 
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				if(rs.getDouble("sum(buyStock)") == 0)
+				{
+					stock[i] = 0;
+					i++;
+				}
+				else {
+				stock[i] = rs.getDouble("sum(buyStock)");
+						i++;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+		}
+		return stock;
+	}
+	
+	public String[] get5BestSell_p() {			//판매 상위 5품목의 상품명
+		String[] products = {"X","X","X","X","X"};
+		int i=0;
+		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct order by sum(buystock) desc limit 5;"; 
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				if(rs.getString("buyProduct").equals(null))
+				{
+					products[i] = "X";
+					i++;
+				}
+				else {
+				products[i] = rs.getString("buyProduct");
+						i++;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+		}
+		return products;
+	}
 }

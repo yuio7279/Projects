@@ -23,7 +23,7 @@ public class SalesRank extends JPanel {
 	Valid_user u_valid = new Valid_user();
 
 	public SalesRank() {
-		if(u_valid.rankManager(LoginUser.id)==1) {
+		if (u_valid.rankManager(LoginUser.id) == 1) {
 			JOptionPane.showMessageDialog(null, "등급이 변경되었습니다. 해당등급에 따른 할인율을 적용받습니다.");
 		}
 		setLayout(null);
@@ -34,28 +34,27 @@ public class SalesRank extends JPanel {
 
 		Font font = new Font("SansSerif", Font.BOLD, 20);
 		Font font2 = new Font("SansSerif", Font.PLAIN, 15);
-		
+
 		JPanel info_pn = new JPanel();
-		info_pn.setBorder(new TitledBorder(null, "매출현황", TitledBorder.LEADING, TitledBorder.TOP, font, null));
-		
+		info_pn.setBorder(new TitledBorder(null, "사용통계", TitledBorder.LEADING, TitledBorder.TOP, font, null));
+
 		info_pn.setLayout(null);
 
-		
-		JLabel info_pn_id = new JLabel("회원 수 : ");		
-		JLabel info_pn_id2 = new JLabel(String.valueOf(uDao.getCountMember()));
-		
+		JLabel info_pn_id = new JLabel("회원 수 : ");
+		JLabel info_pn_id2 = new JLabel(String.valueOf(uDao.getCountMember())+"명");
+
 		JLabel info_pn_dis = new JLabel("진열된 상품 수 : ");
-		JLabel info_pn_dis2 = new JLabel(String.valueOf(pDao.getCountProductTbl()));
-		
+		JLabel info_pn_dis2 = new JLabel(String.valueOf(pDao.getCountProductTbl())+"개");
+
 		JLabel info_pn_sold = new JLabel("품절된 상품 수 : ");
-		JLabel info_pn_sold2 = new JLabel(String.valueOf(pDao.getCountSoldOut()));
-		
+		JLabel info_pn_sold2 = new JLabel(String.valueOf(pDao.getCountSoldOut())+"개");
+
 		JLabel info_pn_many = new JLabel("가장 많이 팔린 상품 수 : ");
-		JLabel info_pn_many2 = new JLabel(String.valueOf(pDao.allCountManyBuyProduct()));
-		JLabel info_pn_many3 = new JLabel("[ "+pDao.allManyBuyProduct()+" ]");
-		
+		JLabel info_pn_many2 = new JLabel(String.valueOf(pDao.allCountManyBuyProduct())+"개");
+		JLabel info_pn_many3 = new JLabel("[ " + pDao.allManyBuyProduct() + " ]");
+
 		JLabel info_pn_tt = new JLabel("총 매출 액 : ");
-		JLabel info_pn_tt2 = new JLabel(String.valueOf(bDao.getTotalBuyPrice()));
+		JLabel info_pn_tt2 = new JLabel(String.valueOf(bDao.getTotalBuyPrice())+"원");
 
 		info_pn_id.setBounds(50, 60, 150, 30);
 		info_pn_id2.setBounds(250, 60, 300, 30);
@@ -80,7 +79,6 @@ public class SalesRank extends JPanel {
 		info_pn_many3.setFont(font2);
 		info_pn_tt.setFont(font2);
 		info_pn_tt2.setFont(font2);
-		
 
 		info_pn.add(info_pn_id);
 		info_pn.add(info_pn_id2);
@@ -94,14 +92,11 @@ public class SalesRank extends JPanel {
 		info_pn.add(info_pn_tt);
 		info_pn.add(info_pn_tt2);
 
-
-
-		JButton chartBtn = new JButton("차트로 보기");
+		JButton chartBtn = new JButton("매출 순위 차트");
 		chartBtn.addActionListener((e) -> {
-				Chart chart = new Chart();
-				
-			}
-		);
+			new Charts();
+
+		});
 
 		info_pn.setFont(font);
 		info_pn.setBounds(20, 30, 730, 400);
@@ -109,8 +104,6 @@ public class SalesRank extends JPanel {
 
 		panel.add(info_pn);
 		panel.add(chartBtn);
-
-//		panel.add(add_pn, BorderLayout.NORTH);
 
 		return panel;
 	}
