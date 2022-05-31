@@ -12,7 +12,7 @@ import com.posproject.gui.LogOut;
 import com.posproject.gui.Member;
 import com.posproject.gui.Refund;
 import com.posproject.gui.Remove;
-import com.posproject.gui.SalesRank;
+import com.posproject.gui.Usage;
 import com.posproject.gui.UserManagement;
 import com.posproject.main.Start;
 import com.posproject.valid.Valid_user;
@@ -47,7 +47,7 @@ public class PannelBtnAction implements ActionListener {
 			imsi2.viewScreen(new Remove());
 			break;
 		case "사용통계":
-			imsi2.viewScreen(new SalesRank());
+			imsi2.viewScreen(new Usage());
 			break;
 		case "회원관리":
 			imsi2.viewScreen(new UserManagement());

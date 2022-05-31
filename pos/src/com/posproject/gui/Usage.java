@@ -13,7 +13,7 @@ import com.posproject.process.LoginUser;
 import com.posproject.valid.Valid_buy;
 import com.posproject.valid.Valid_user;
 
-public class SalesRank extends JPanel {
+public class Usage extends JPanel {
 	JScrollPane scroll;
 	JTextField[] jtf;
 	ProductDAO pDao = new ProductDAO();
@@ -22,7 +22,7 @@ public class SalesRank extends JPanel {
 	Valid_buy valid = new Valid_buy();
 	Valid_user u_valid = new Valid_user();
 
-	public SalesRank() {
+	public Usage() {
 		if (u_valid.rankManager(LoginUser.id) == 1) {
 			JOptionPane.showMessageDialog(null, "등급이 변경되었습니다. 해당등급에 따른 할인율을 적용받습니다.");
 		}

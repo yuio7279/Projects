@@ -15,6 +15,7 @@ import com.posproject.dao.ProductDAO;
 import com.posproject.dto.Buy;
 import com.posproject.main.Start;
 import com.posproject.process.LoginUser;
+import com.posproject.valid.Valid_user;
 
 import java.util.*;
 
@@ -27,7 +28,7 @@ public class Refund extends JPanel {
 	JTextField[] jtf;
 	BuyDAO bDao = new BuyDAO();
 	ProductDAO pDao = new ProductDAO();
-
+	Valid_user u_valid = new Valid_user();
 	public Refund() {
 		setLayout(new BorderLayout());
 		BuyList buy = new BuyList();
@@ -107,6 +108,9 @@ public class Refund extends JPanel {
 
 						pDao.refund(buyNo, stock, product);
 						JOptionPane.showMessageDialog(null, "환불 완료!");
+						if(u_valid.rankManager(LoginUser.id)==1) {
+							JOptionPane.showMessageDialog(null, "등급이 변경되었습니다. 해당등급에 따른 할인율을 적용받습니다.");
+						}
 						JButton imsi = (JButton) e.getSource();
 						Start imsi2 = (Start) imsi.getTopLevelAncestor();
 						imsi2.viewScreen(new Refund());

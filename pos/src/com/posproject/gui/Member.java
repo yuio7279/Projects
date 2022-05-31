@@ -24,9 +24,7 @@ public class Member extends JPanel {
 	Valid_user u_valid = new Valid_user();
 
 	public Member() {
-		if(u_valid.rankManager(LoginUser.id)==1) {
-			JOptionPane.showMessageDialog(null, "등급이 변경되었습니다. 해당등급에 따른 할인율을 적용받습니다.");
-		}
+		
 		setLayout(null);
 		addPanel(this);
 	}

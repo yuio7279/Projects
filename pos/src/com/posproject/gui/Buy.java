@@ -17,6 +17,7 @@ import com.posproject.dto.Product;
 import com.posproject.main.Start;
 import com.posproject.process.LoginUser;
 import com.posproject.valid.Valid_buy;
+import com.posproject.valid.Valid_user;
 
 import java.util.*;
 
@@ -31,7 +32,7 @@ public class Buy extends JPanel {
 	BuyDAO bDao = new BuyDAO();
 	UserDAO uDao = new UserDAO();
 	Valid_buy valid = new Valid_buy();
-
+	Valid_user u_valid = new Valid_user();
 	public Buy() {
 		setLayout(new BorderLayout());
 		AddTblScroll buy = new AddTblScroll();
@@ -117,6 +118,9 @@ public class Buy extends JPanel {
 						} else if (Integer.parseInt(amount) <= stock) {
 							stock = stock - Integer.parseInt(amount);
 							bDao.buyProcess(LoginUser.id, product, Integer.parseInt(amount), price, stock);
+							if(u_valid.rankManager(LoginUser.id)==1) {
+								JOptionPane.showMessageDialog(null, "등급이 변경되었습니다. 해당등급에 따른 할인율을 적용받습니다.");
+							};
 							JButton imsi = (JButton) e.getSource();
 							Start imsi2 = (Start) imsi.getTopLevelAncestor();
 							imsi2.viewScreen(new Buy());

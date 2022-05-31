@@ -21,12 +21,12 @@ public class Gaip extends JFrame {
 
 	public Gaip() {
 
-		setBackground(Color.white);
 		setTitle("포스 매니저");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		c = getContentPane();
+		c.setBackground(Color.white);
 		JPanel add_pn = new JPanel();
 		addPanel(add_pn);
 		add(add_pn);
@@ -38,7 +38,6 @@ public class Gaip extends JFrame {
 	// 회원용 가입패널
 	public JPanel addPanel(JPanel panel) {
 		setLayout(null);
-		this.setBackground(Color.white);
 		Font font = new Font("SansSerif", Font.BOLD, 20);
 		JLabel id = new JLabel("아이디");
 		JLabel pw = new JLabel("비밀번호");

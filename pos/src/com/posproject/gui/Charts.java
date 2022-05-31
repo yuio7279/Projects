@@ -29,7 +29,7 @@ public class Charts extends JFrame {
 
 	        addWindowListener(new WindowAdapter() {
 	        	public void windowClosing(WindowEvent e) {
-	        		new SalesRank();
+	        		new Usage();
 	        		dispose();
 	        	}
 	        });
@@ -41,7 +41,6 @@ public class Charts extends JFrame {
 
 
 
-	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        pack();
 	        setVisible(true);
 
