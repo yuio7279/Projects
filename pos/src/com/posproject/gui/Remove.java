@@ -2,6 +2,7 @@ package com.posproject.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -68,13 +69,19 @@ public class Remove extends JPanel {
 			tableTitle.addElement("상품명");
 			tableTitle.add("재고");
 			tableTitle.add("가격");
-			model = new DefaultTableModel(tableTitle, 0);
+			model = new DefaultTableModel(tableTitle, 0){
+		         public boolean isCellEditable(int i, int c){
+		        	return false;
+		         }
+		        };
 			table = new JTable(model);
 			table.getColumnModel().getColumn(2).setCellRenderer(null);
 			;
 			table.getColumnModel().getColumn(2).setCellEditor(null);
 			;
 
+			table.setRowHeight(50);
+			table.setFont(new Font("Sans Serif",Font.PLAIN,15));
 			scroll = new JScrollPane(table);
 
 			for (Product data : list) {

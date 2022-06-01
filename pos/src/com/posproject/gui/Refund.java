@@ -3,6 +3,7 @@ package com.posproject.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.*;
@@ -51,8 +52,19 @@ public class Refund extends JPanel {
 			tableTitle.add("구매량");
 			tableTitle.add("구매가격");
 			tableTitle.add("환불");
-			model = new DefaultTableModel(tableTitle, 0);
+			model = new DefaultTableModel(tableTitle, 0){	//버튼 제외 클릭금지
+		         public boolean isCellEditable(int i, int c){
+		        	 if(c==4) {
+		        		 return true;
+		        	 }
+		        	 else {
+		        		 return false;
+		        	 }
+		         }
+		        };
 			table = new JTable(model);
+			table.setRowHeight(50);
+			table.setFont(new Font("SansSerif",Font.PLAIN,15));
 			try {
 				table.getColumnModel().getColumn(4).setCellRenderer(new TableCell());
 				;

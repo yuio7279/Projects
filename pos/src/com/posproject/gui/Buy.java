@@ -3,6 +3,7 @@ package com.posproject.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.*;
@@ -49,15 +50,24 @@ public class Buy extends JPanel {
 			tableTitle.add("재고");
 			tableTitle.add("가격");
 			tableTitle.add("구매");
-			model = new DefaultTableModel(tableTitle, 0);
+			model = new DefaultTableModel(tableTitle, 0){	//버튼 제외 클릭금지
+		         public boolean isCellEditable(int i, int c){
+		        	 if(c==3) {
+		        		 return true;
+		        	 }
+		        	 else {
+		        		 return false;
+		        	 }
+		         }
+		        };
 			table = new JTable(model);
 			table.getColumnModel().getColumn(3).setCellRenderer(new TableCell());
 			;
 			table.getColumnModel().getColumn(3).setCellEditor(new TableCell());
 			;
-
 			scroll = new JScrollPane(table);
-
+			table.setRowHeight(50);
+			table.setFont(new Font("SansSerif",Font.PLAIN,15));
 			String id = LoginUser.id;
 			int rank = uDao.getRank(id);
 

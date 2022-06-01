@@ -2,6 +2,7 @@ package com.posproject.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -70,7 +71,11 @@ public class UserManagement extends JPanel {
 			tableTitle.add("비밀번호");
 			tableTitle.add("계정권한");
 			tableTitle.add("회원등급");
-			model = new DefaultTableModel(tableTitle, 0);
+			model = new DefaultTableModel(tableTitle, 0){		//클릭 금지
+		         public boolean isCellEditable(int i, int c){
+		        	 return false;
+		         }
+		        };
 			table = new JTable(model);
 
 			table.getColumnModel().getColumn(3).setCellRenderer(null);
@@ -79,6 +84,8 @@ public class UserManagement extends JPanel {
 
 			scroll = new JScrollPane(table);
 
+			table.setRowHeight(50);
+			table.setFont(new Font("SansSerif",Font.PLAIN,15));
 			for (User data : list) {
 
 				String rank = data.getRank();
