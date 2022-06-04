@@ -10,15 +10,16 @@ import com.posproject.dto.Buy;
 
 public class BuyDAO {
 
-	DAO dao = new DAO();
-	UserDAO uDao = new UserDAO();
-	Connection conn = dao.accessDb();
-	String sql = "";
-	String userId = "";
+	DAO dao;
+	Connection conn;
+	String sql;
+	String userId;
 	private ArrayList<Buy> buyList = new ArrayList<>();
 
 	public ArrayList<Buy> getBuyTbl(String id) {
 		sql = "SELECT * FROM buytbl where buyUser = ?";
+		dao = new DAO();
+		conn = dao.accessDb();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -26,15 +27,18 @@ public class BuyDAO {
 			while (rs.next()) {
 				buyList.add(new Buy(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
 			}
+			conn.close();
+			pstmt.close();
 		} catch (SQLException e) {
-		}
-		catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 		}
 		return buyList;
 	}
 
 	public void buyProcess(String id, String product, int amount, Double price, int stock) {
 		sql = "INSERT INTO buytbl (`buyUser`, `buyProduct`, `buyStock`, `buyPrice`) VALUES (?, ?, ?, ?)";
+		dao = new DAO();
+		conn = dao.accessDb();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -53,7 +57,8 @@ public class BuyDAO {
 			pstmt.setInt(1, stock);
 			pstmt.setString(2, product);
 			if (pstmt.executeUpdate() == 1) {
-			}conn.close();
+			}
+			conn.close();
 			pstmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -61,8 +66,9 @@ public class BuyDAO {
 		}
 	}
 
-	public String getTotalBuyPrice(String id) {		//계정별 총 구매 액
-
+	public String getTotalBuyPrice(String id) { // 계정별 총 구매 액
+		dao = new DAO();
+		conn = dao.accessDb();
 		sql = "select sum(buyPrice) from buytbl where buyUser = ?  group by buyUser";
 		long price = 0;
 		try {
@@ -71,7 +77,8 @@ public class BuyDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				price = rs.getLong("sum(buyPrice)");
-			}conn.close();
+			}
+			conn.close();
 			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -81,8 +88,9 @@ public class BuyDAO {
 		return String.valueOf(price);
 	}
 
-	public Long getTotalBuyPrice() {		//전체 내역 총 구매 액
-
+	public Long getTotalBuyPrice() { // 전체 내역 총 구매 액
+		dao = new DAO();
+		conn = dao.accessDb();
 		sql = "select sum(buyPrice) from buytbl";
 		long price = 0;
 		try {
@@ -90,7 +98,8 @@ public class BuyDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				price = rs.getLong("sum(buyPrice)");
-			}conn.close();
+			}
+			conn.close();
 			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,24 +109,26 @@ public class BuyDAO {
 		return price;
 	}
 
-	public double[] get5BestSell() {			//판매 상위 5품목의 수량
-		double[] stock = {0,0,0,0,0};
-		int i=0;
-		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct order by sum(buystock) desc limit 5;"; 
+	public double[] get5BestSell() { // 판매 상위 5품목의 수량
+		double[] stock = { 0, 0, 0, 0, 0 };
+		int i = 0;
+		dao = new DAO();
+		conn = dao.accessDb();
+		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct order by sum(buystock) desc limit 5;";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if(rs.getDouble("sum(buyStock)") == 0)
-				{
+				if (rs.getDouble("sum(buyStock)") == 0) {
 					stock[i] = 0;
 					i++;
-				}
-				else {
-				stock[i] = rs.getDouble("sum(buyStock)");
-						i++;
+				} else {
+					stock[i] = rs.getDouble("sum(buyStock)");
+					i++;
 				}
 			}
+			conn.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NullPointerException e) {
@@ -125,24 +136,26 @@ public class BuyDAO {
 		return stock;
 	}
 
-	public String[] get5BestSell_p() {			//판매 상위 5품목의 상품명
-		String[] products = {"X","X","X","X","X"};
-		int i=0;
-		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct order by sum(buystock) desc limit 5;"; 
+	public String[] get5BestSell_p() { // 판매 상위 5품목의 상품명
+		String[] products = { "X", "X", "X", "X", "X" };
+		int i = 0;
+		dao = new DAO();
+		conn = dao.accessDb();
+		sql = "select buyProduct, sum(buystock) from buytbl group by buyProduct order by sum(buystock) desc limit 5;";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if(rs.getString("buyProduct").equals(null))
-				{
+				if (rs.getString("buyProduct").equals(null)) {
 					products[i] = "X";
 					i++;
-				}
-				else {
-				products[i] = rs.getString("buyProduct");
-						i++;
+				} else {
+					products[i] = rs.getString("buyProduct");
+					i++;
 				}
 			}
+			conn.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NullPointerException e) {

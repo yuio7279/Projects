@@ -13,18 +13,21 @@ import com.posproject.valid.Valid_gaip;
 
 public class UserDAO {
 
-	String sql = "";
-	String userId = "";
-	DAO dao = new DAO();
+	String sql;
+	String userId;
+	DAO dao;
 	Valid_gaip valid = new Valid_gaip();
-	Connection conn = dao.accessDb();
+	Connection conn;
 
 	private ArrayList<User> u_List = new ArrayList<>();
 
 	public int login(String id, String pw) {
 		sql = "SELECT * FROM user where id = ?";
+		dao = new DAO();
+		conn = dao.accessDb();
 		int isAdmin = -1;
 		try {
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
@@ -35,6 +38,8 @@ public class UserDAO {
 					return isAdmin;
 				}
 			}
+			conn.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NullPointerException e) {
@@ -44,8 +49,11 @@ public class UserDAO {
 
 	public int getCountMember() {
 		int members = 0;
+		dao = new DAO();
+		conn = dao.accessDb();
 		sql = "select count(id) from user";
 		try {
+			conn = dao.accessDb();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -62,15 +70,19 @@ public class UserDAO {
 
 	public int getRank(String id) {
 		sql = "select * from user where id = ?";
+		dao = new DAO();
+		conn = dao.accessDb();
 		int rank = -1;
 		try {
+			conn = dao.accessDb();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				rank = rs.getInt(4);
 			}
-
+			conn.close();
+			pstmt.close();
 		} catch (SQLException e) {
 		} catch (NullPointerException e) {
 		}
@@ -79,7 +91,10 @@ public class UserDAO {
 
 	public ArrayList<User> getUserTbl() {
 		sql = "select * from user";
+		dao = new DAO();
+		conn = dao.accessDb();
 		try {
+			conn = dao.accessDb();
 			Connection conn = dao.accessDb();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -99,7 +114,10 @@ public class UserDAO {
 	// 회원관리 텝에서 회원삭제 버튼 클릭시 //
 	public int removeUserProcess(String UserID) {
 		sql = "DELETE FROM user where id = ?";
+		dao = new DAO();
+		conn = dao.accessDb();
 		try {
+			conn = dao.accessDb();
 			Connection conn = dao.accessDb();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, UserID);
@@ -122,7 +140,10 @@ public class UserDAO {
 	// 등급 업
 	public int rankUP(String id, int rank) {
 		sql = "UPDATE user SET `rank` = ? WHERE id = ?";
+		dao = new DAO();
+		conn = dao.accessDb();
 		try {
+			conn = dao.accessDb();
 			rank = rank + 1;
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rank);
@@ -130,6 +151,8 @@ public class UserDAO {
 			if (pstmt.executeUpdate() == 1) {
 				return rank;
 			}
+			conn.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,7 +163,10 @@ public class UserDAO {
 	// 등급 다운
 	public int rankDown(String id, int rank) {
 		sql = "UPDATE user SET `rank` = ? WHERE id = ?";
+		dao = new DAO();
+		conn = dao.accessDb();
 		try {
+			conn = dao.accessDb();
 			rank = rank - 1;
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rank); // 우수인경우 환불하면 일반이된다.
@@ -148,6 +174,8 @@ public class UserDAO {
 			if (pstmt.executeUpdate() == 1) {
 				return rank;
 			}
+			conn.close();
+			pstmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -158,7 +186,10 @@ public class UserDAO {
 	// 회원가입
 	public int gaipProcess(String id, String password) {
 		sql = "INSERT INTO user VALUES (?, ?, 0, 1)";
+		dao = new DAO();
+		conn = dao.accessDb();
 		try {
+			conn = dao.accessDb();
 			if (valid.gaipCheck(id, password) == 1) {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);

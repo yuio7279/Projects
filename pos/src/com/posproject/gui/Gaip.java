@@ -66,7 +66,7 @@ public class Gaip extends JFrame {
 			if (uDao.gaipProcess(idTf.getText(), pwTf.getText()) == 1) {
 				JOptionPane.showMessageDialog(null, "회원 가입이 완료 되었습니다.");
 				new Start();
-				dispose();		//화면안보이게하는 메서드, 자원까지 반납
+				dispose();		//해당프레임만 종료 메서드, 자원까지 반납
 			}
 		}); // 회원가입액션
 

@@ -135,7 +135,7 @@ public class Start extends JFrame {
 
 			} else if (imsi.getText().equals("회원가입")) {
 				new Gaip();
-				setVisible(false);
+				dispose();
 			}
 		}
 	}

@@ -24,8 +24,7 @@ public class DAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Too many connections!");
-			System.exit(0);
+			e.printStackTrace();
 		} 
 		return conn;
 	}
@@ -33,7 +32,6 @@ public class DAO {
 	public void closeConn() {
 		try {
 			conn.close();
-			System.out.println("DB접속 해제");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
