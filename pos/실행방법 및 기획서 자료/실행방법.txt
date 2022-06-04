@@ -1,6 +1,11 @@
-1. resource\sql\database.sql 파일을 mysql에서 불러와 database초기화를 해주세요	(데이터베이스 이름 : posDB)
-2. lib폴더안의 jar파일들을 경로설정(build path) 해주세요
+
+import > Existing Projects into Workspace > pos 폴더를 import 해주세요 (프로젝트 전체)
+
+1. pos\resource\sql\database.sql 파일을 mysql에서 불러와 database초기화를 해주세요	(데이터베이스 이름 : posDB)
+2. pos\lib 폴더안의 jar파일들을 경로설정(build path) 해주세요
+
 3. 프로그램을 실행해주세요
+
 4. 초기화되어있는 아이디 :
 			admin : 1234	(관리자계정)
 			kys : 1234, 일반등급
