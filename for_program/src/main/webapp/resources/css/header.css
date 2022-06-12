@@ -1,4 +1,4 @@
-
+@charset "UTF-8";
 body {
     margin: 0;
 }
@@ -10,7 +10,7 @@ button {
 }
 .header {
     background-color: var(--white-gray-color);
-    height: 80px;
+    height: 120px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,39 +18,44 @@ button {
     width: 100%;
 }
 
-a {
-    text-decoration: none;
-}
 .header_nav {
-    margin: 0px 40px;
     display:flex;
     flex-direction: row;
+    margin: 0px 150px;
 }
 
-.header_nav a {
-    color: #061763;
+.header_nav .header_logo {
+    width: 100px;
+    height: 100px;
+    background-color: var(--temp-color);
 }
 
-.header_nav .header_nav_project {
-    font-size: 15px;
-    color: gray;
-    margin: 0px 40px;
+.header_nav .header_nav_project{
+    display: flex;
+    align-items: center;
+    margin: 0px 15px;
 }
 
 .header_nav_project a {
     color: #515151;
+    padding: 0px 15px;
+    font-size: 20px;
 }
 .header_nav_project a:hover {
     color: black;
 }
 .header_member {
-    margin-right: 40px;
-    
+    margin: 0px 150px;
 }
 .header_member .header_login {
     background-color: gray;
-    color: aliceblue;
+    width: 200px;
+    height: 60px;
+    color: white;
     cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
 }
 .header_member .header_login:hover {
     background-color: white;
@@ -58,8 +63,13 @@ a {
 }
 .header_member .header_gaip {
     background-color: var(--blue-color);
-    color: aliceblue;
+    width: 200px;
+    height: 60px;
+    color: white;
     cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
 }
 .header_member .header_gaip:hover {
 background-color: white;

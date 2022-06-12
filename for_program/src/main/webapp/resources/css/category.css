@@ -1,11 +1,12 @@
+@charset "UTF-8";
 a {
     text-decoration: none;
 }
 .c_container {
     width: 200px;
     height: 600px;
-    position: fixed;
-    margin: 150px 100px;	
+    margin: 200px 150px;
+
     display: flex;
 }   
 .listBox {
@@ -27,6 +28,7 @@ a {
 }
 .listBox li a {
     color: black;
+    font-size: 20px;
 }
 .listBox li a:hover {
     color: pink;
