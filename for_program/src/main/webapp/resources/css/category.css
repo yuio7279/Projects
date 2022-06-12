@@ -1,0 +1,33 @@
+a {
+    text-decoration: none;
+}
+.c_container {
+    width: 200px;
+    height: 600px;
+    position: fixed;
+    margin: 150px 100px;	
+    display: flex;
+}   
+.listBox {
+    list-style: none;
+    padding: 0;
+}
+.category {
+    padding: 0px 5px;
+    width: 100%;
+}
+.category .msg {
+    cursor:default;
+}
+.category_border {
+    border: 2px solid var(--white-gray-color);
+}
+.listBox li {
+    padding: 3px 0px;
+}
+.listBox li a {
+    color: black;
+}
+.listBox li a:hover {
+    color: pink;
+}

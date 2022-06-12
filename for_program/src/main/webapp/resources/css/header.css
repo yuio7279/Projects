@@ -1,0 +1,67 @@
+
+body {
+    margin: 0;
+}
+button {
+    border: 0;
+    background-color: white;
+    padding: 6px 30px;
+    outline: 0;
+}
+.header {
+    background-color: var(--white-gray-color);
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+.header_nav {
+    margin: 0px 40px;
+    display:flex;
+    flex-direction: row;
+}
+
+.header_nav a {
+    color: #061763;
+}
+
+.header_nav .header_nav_project {
+    font-size: 15px;
+    color: gray;
+    margin: 0px 40px;
+}
+
+.header_nav_project a {
+    color: #515151;
+}
+.header_nav_project a:hover {
+    color: black;
+}
+.header_member {
+    margin-right: 40px;
+    
+}
+.header_member .header_login {
+    background-color: gray;
+    color: aliceblue;
+    cursor: pointer;
+}
+.header_member .header_login:hover {
+    background-color: white;
+    color: black;
+}
+.header_member .header_gaip {
+    background-color: var(--blue-color);
+    color: aliceblue;
+    cursor: pointer;
+}
+.header_member .header_gaip:hover {
+background-color: white;
+color: black;
+}
