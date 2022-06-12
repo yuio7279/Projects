@@ -8,7 +8,7 @@ CREATE TABLE `jspsql`.`membertbl` (
   `mTel` VARCHAR(45) NOT NULL,			-- 연락처
   `mMail` VARCHAR(45) NULL,				-- 이메일
   `mAddress` VARCHAR(45) NULL,			-- 주소
-  `mText` VARCHAR(100) NULL,			-- ??member
+  `mText` VARCHAR(100) NULL,			-- ??
   `mSkill` VARCHAR(100) NULL,			-- 기술 스택
   PRIMARY KEY (`mID`));
 
