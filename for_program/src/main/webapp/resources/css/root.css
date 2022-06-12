@@ -5,18 +5,3 @@
     --yellow-color: #fffc5b;
     --temp-color : rgb(221, 237, 193);
 }
-body {
-    display: flex;
-    flex-direction: row;
-}
-li {
-    list-style: none;
-}
-a {
-    text-decoration: none;
-    color: black;
-}
-button {
-    outline: none;
-    border: none;
-}
