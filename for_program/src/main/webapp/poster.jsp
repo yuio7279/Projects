@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="resources/css/category.css">
 </head>
 <body>
+<!-- 부트스트랩 적용 전 -->
     <div class="header">
         <div class="header_nav">
             <a href="#">로고이미지_</a>
