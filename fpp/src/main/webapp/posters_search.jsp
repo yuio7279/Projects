@@ -45,12 +45,11 @@
 				<div class="row">
 					<%
 					/*Connection conn = null;
-
 					try {
 						String url = "jdbc:mysql://localhost:3306/jspsql";
 						String user = "root";
-						String password = "root";
-						//String password = "1234";
+						//String password = "root";
+						String password = "1234";
 
 						Class.forName("com.mysql.cj.jdbc.Driver");
 						conn = DriverManager.getConnection(url, user, password);
@@ -59,16 +58,21 @@
 						out.println("SQLException: " + ex.getMessage());
 					}*/
 					%><%@ include file="dbconn.jsp"%><%
-					
-					String sql = "SELECT * FROM posttbl";
+					request.setCharacterEncoding("UTF-8");
+					String search = request.getParameter("search_text");
+					search = "%"+search+"%";
+
+					String sql = "SELECT * FROM posttbl WHERE pTitle LIKE ? OR pCategory LIKE ?";
 					String pId = "";
 					String pTitle = "";
 					String pWriter = "";
 					String pPrice = "";
 					String pSkillText = "";
 					String pImageName = "";
-					Statement st = conn.createStatement();
-					ResultSet rs = st.executeQuery(sql);
+					PreparedStatement prest = conn.prepareStatement(sql);
+					prest.setString(1, search);
+					prest.setString(2, search);
+					ResultSet rs = prest.executeQuery();
 					while (rs.next()) {
 						pId = rs.getString("pId");
 						pTitle = rs.getString("pTitle");
@@ -81,7 +85,7 @@
 					<div class="col-md-4 mt-5">
 						<div class="card" style="width: 100%;">
 							<img src="./resources/images/<%=pImageName%>"
-								class="card-img-top" alt="..." width="200px" height="250px">
+								class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title"><%=pTitle%></h5>
 								<h6 class="card-subtitle mb-2 text-muted"><%=pWriter%></h6>
@@ -94,42 +98,6 @@
 					<%
 					}
 					%>
-					<div class="col-md-4 mt-5">
-						<div class="card" style="width: 100%;">
-							<img src="./resources/images/test1.jpg" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 mt-5">
-						<div class="card" style="width: 100%;">
-							<img src="./resources/images/test2.jpg" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 mt-5">
-						<div class="card" style="width: 100%;">
-							<img src="./resources/images/test3.jpg" class="card-img-top"
-								alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
-							</div>
-						</div>
-					</div>
 
 				</div>
 			</div>

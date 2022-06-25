@@ -5,12 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class PosterDAO {
-
 	PreparedStatement pstmt = null;
-	
-	
+
 // 여기에 정의한 함수들을 호출하려면 conn을 매개변수로 받는데 이는 호출하는 페이지에서 <%@ include file="dbconn.jsp">를 실행하여 conn을 얻을 수 있다.
 //--------------------포스터ID에 해당하는 포스터 정보----------------------
 	public ResultSet get_poster(Connection conn,int pID) {
@@ -95,7 +94,7 @@ public class PosterDAO {
 			pstmt.setString(4,pText);
 			pstmt.setString(5,pSkillText);
 			pstmt.setString(6,pCategory);
-			pstmt.setString(7,null);
+			pstmt.setString(7,pImageName);
 			row = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

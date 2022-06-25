@@ -7,9 +7,10 @@
 <title>상세 페이지</title>
 <script src="https://kit.fontawesome.com/5547fa07a6.js"
 	crossorigin="anonymous"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="./resources/css/carousel.css">
 <style>
 .contour {
 	border-right: 3px solid rgb(209, 209, 209);
@@ -23,7 +24,6 @@
 		if (confirm("게시물을 등록 하시겠습니까?")) {
 			
 			form.submit();
-			alert("등록이 완료되었습니다.");
 		}
 	}
 	function cancel() {
@@ -48,7 +48,7 @@
 
 
 	<form name="addForm" action = "<%= request.getContextPath()%>/addposter_process.jsp"
-			method = "POST" id="addForm">
+			method = "post" id="addForm" encType="multipart/form-data">
 		<div class="container mt-5">
 			<div class="row mx-5">
 				<h3 class="mb-5" style="text-align: center;">게시물 등록 화면</h3>
@@ -61,7 +61,22 @@
 								<option selected>인공지능</option>
 								<option value="백앤드">백앤드</option>
 								<option value="프론트앤드">프론트앤드</option>
-								<option value="Three">Three</option>
+								<option value="웹풀스택">웹풀스택</option>
+								<option value="안드로이드">안드로이드</option>
+								<option value="IOS">IOS</option>
+								<option value="하이브리드앱">하이브리드앱</option>
+								<option value="게임클라이언트">게임클라이언트</option>
+								<option value="게임서버">게임서버</option>
+								<option value="DBA">DBA</option>
+								<option value="데이터엔지니어">데이터엔지니어</option>
+								<option value="머신러닝">머신러닝</option>
+								<option value="시스템소프트웨어">시스템소프트웨어</option>
+								<option value="devOPs">devOPs</option>
+								<option value="사물인터넷(IoT)">사물인터넷(IoT)</option>
+								<option value="인터넷보안">인터넷보안</option>
+								<option value="응용프로그램">응용프로그램</option>
+								<option value="QA">QA</option>
+								<option value="VR/AR/3D">VR/AR/3D</option>
 							</select>
 						</div>
 					</div>
@@ -115,9 +130,10 @@
 	</form>
 	<!-- 포스토 등록 end -->
 
-	<script type="text/javascript">
-		src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-	</script>
+	   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"></script>
+
 </body>
 
 </html>
